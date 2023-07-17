@@ -1,0 +1,8 @@
+.adduserform_wrapper{
+	z-index: 999 !important;
+	/*display: absolute;*/
+	background: white !important;
+	top: auto !important;
+	padding: 24px;
+	margin: auto;
+}
