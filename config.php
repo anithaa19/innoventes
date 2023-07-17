@@ -26,7 +26,7 @@ if(!empty($_POST) && $_POST["email"] != '') {
 
 	);
 
-	$insert_qry = mysqli_execute(mysqli_query("INSERT INTO users (name, email, password, contact_number, country, state, district) VALUES ('".$val['name']."', '".$val['email']."', '".$val['password']."', ".$val['contact_number'].", '".$val['country']."', '".$val['state']."', '".$val['district']."')"));
+	$insert_qry = mysqli_execute(mysqli_query($dbConn, "INSERT INTO users (name, email, password, contact_number, country, state, district) VALUES ('".$val['name']."', '".$val['email']."', '".$val['password']."', ".$val['contact_number'].", '".$val['country']."', '".$val['state']."', '".$val['district']."')"));
 
 	if (!$insert_qry) {
 		echo "Insertion failed, ";
@@ -34,22 +34,15 @@ if(!empty($_POST) && $_POST["email"] != '') {
 }
 
 
-$fetch_qry = mysqli_query("SELECT id, name, email, contact_number, country, state, district FROM users");
+$fetch_qry = mysqli_query($dbConn, "SELECT id, name, email, contact_number, country, state, district FROM users");
 
-$data = mysqli_fetch($fetch_qry);
-
-print_r($data);
-
-
-
-// function insertQry() {
-if(!empty($_POST) && $_POST["id"] > 0) { 
-
-	$delete_qry = mysqli_execute(mysqli_query("UPDATE users SET status=2 WHERE id=".$_POST['id'].")"));
-
-	if (!$delete_qry) {
-		echo "Delete Entry failed, ";
+$resultData = array();
+if (mysqli_num_rows($fetch_qry) > 0) {
+	// output data of each row
+	while($row = mysqli_fetch_assoc($fetch_qry)) {
+		array_push($resultData, $row);
+		
 	}
-}
-
+	return $resultData;
+  } 
 ?>

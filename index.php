@@ -28,19 +28,23 @@
 					<th>Country</th>
 					<th>Action</th>
 				</tr>
-
+				<?php foreach($resultData as $key => $value ){  ?>
+					
 				<tr>
-					<td>123</td>
-					<td>Teja</td>
-					<td>anitha@gmail.com</td>
-					<td>0976432146</td>
-					<td>Andhra</td>
-					<td>Andhra</td>
-					<td>Andhra</td>
-					<td> 
-						<a href="localhost/innoventes/delete?id=">Delete</a>
-					</td>
+					
+						<td><?php echo $value['id']; ?> </td>
+						<td><?php echo $value['name']; ?> </td>
+						<td><?php echo $value['email']; ?> </td>
+						<td><?php echo $value['contact_number']; ?></td>
+						<td><?php echo $value['district']; ?></td>
+						<td><?php echo $value['state']; ?></td>
+						<td><?php echo $value['country']; ?></td>
+						<td> 
+							<a href="delete.php?id=<?php echo $value['id']; ?>">Delete</a>
+						</td>
+					
 				</tr>
+				<?php } ?>
 		</table>
 	</div>
 
